@@ -37,18 +37,11 @@ function addColleague(colleagues: Colleague[], name: string, department: string,
 
   colleagues.push(newColleague);
 }
-
-
-
 addColleague(colleagues.current, "Sheild O Connell", "HR", "soc@here.com" );
 console.log(colleagues.current.filter((c) => c.name === "Sheild O Connell"));
 console.log("add Colleagues")
 
-function sortColleagues(
-  colleagues: Colleague[],
-  sorter: (c1: Colleague, c2: Colleague) => number,
-  max? : number
-): EmailContact[] {
+function sortColleagues(colleagues: Colleague[], sorter: (c1: Colleague, c2: Colleague) => number,max? : number): EmailContact[] {
   let end = colleagues.length;
   if (max !== undefined) {
      end = max < 2 ? 1 : max
@@ -63,9 +56,25 @@ console.log(sortColleagues(colleagues.current, (a, b) => (a.name.length - b.name
 console.log(sortColleagues(colleagues.current, (a, b) => (a.name.length - b.name.length))); // NEW
 console.log("sort colleagues ^")
 
+
+function addInterest(f1: Friend, newInterest: string): string[]{
+    if(!f1.interests)
+    {
+        f1.interests = [];
+    }
+
+    f1.interests.push(newInterest);
+
+    return f1.interests;
+
+}
+console.log(addInterest(friends[0], 'Politics'))
+
+
 function findFriends(friends: Friend[], sorter: (f1: Friend) => boolean){
         return friends.filter(sorter).map(f1 => f1.name)
 }
 
 console.log(findFriends(friends, (friend) => friend.name.startsWith('Pa')));
 console.log(findFriends(friends, (friend) => friend.age < 35));
+
